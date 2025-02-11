@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detekcja Spamu w SMS-ach</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Sprawdź, czy Twój SMS to Spam!</h1>
+
+    <form method="POST">
+        <textarea name="sms_text" rows="4" cols="50" placeholder="Wpisz SMS-a do sprawdzenia..."></textarea><br><br>
+        <input type="submit" value="Sprawdź">
+    </form>
+
+    {% if prediction is not none %}
+        <h3 class="{{ 'success' if prediction == 'ham' else '' }}">
+            Wynik: <span>{{ 'Spam' if prediction == 'spam' else 'Nie Spam' }}</span>
+        </h3>
+    {% endif %}
+</body>
+</html>
